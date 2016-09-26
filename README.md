@@ -38,7 +38,7 @@ for its response and upon it base its final advice.
 
 1. Travel Directions (Use the provided API key):
 
-https://maps.googleapis.com/maps/api/directions/json?key=AIzaSyALaSwI-8n_PV-emGvj3dmKggbcL_wfsVY&origin=Toronto&destination=Montreal
+https://maps.googleapis.com/maps/api/directions/json?key=APIKEY&origin=Toronto&destination=Montreal
 
 2. Weather Information for a specific latitude and longitude pair (please register to obtain an API key)
 
