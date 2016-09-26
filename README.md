@@ -38,8 +38,7 @@ for its response and upon it base its final advice.
 
 1. Travel Directions (Use the provided API key):
 
-https://maps.googleapis.com/maps/api/directions/json?key=AIzaSyALaSwI-8n_PV-
-emGvj3dmKggbcL_wfsVY&origin=Toronto&destination=Montreal
+https://maps.googleapis.com/maps/api/directions/json?key=AIzaSyALaSwI-8n_PV-emGvj3dmKggbcL_wfsVY&origin=Toronto&destination=Montreal
 
 2. Weather Information for a specific latitude and longitude pair (please register to obtain an API key)
 
@@ -101,9 +100,7 @@ can assume that only one leg will be returned at all times (e.g. no need to hand
 
 * Please note that the weather API returns only Kelvin temperatures, while the responses should be in Celsius.
 
-* Bear in mind that each public api has its own capping on rate. Pay attention that you are within limits during
-
-development. *There is no requirement to take them into account in the code itself*.
+* Bear in mind that each public api has its own capping on rate. Pay attention that you are within limits during development. * There is no requirement to take them into account in the code itself*.
 
 * Directions API - 2500 requests per day are allowed.
 
