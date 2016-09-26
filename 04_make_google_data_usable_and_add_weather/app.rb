@@ -17,7 +17,7 @@ end
 def get_weather_data_for_travel(lat, lon)
   url = "http://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&key=#{OPENWEATHER_API_KEY}"
   response = open(url)
-  response_status = response.status
+  # response_status = response.status
   response_body = response.read
   return response_body
 end
@@ -33,7 +33,7 @@ class ShowRequest < Sinatra::Base
 
     "source: #{params[:source]}\n destination: #{params[:destination]}\n
       mintemp: #{params[:mintemp]}\n maxtemp: #{params[:maxtemp]}\n maxtime: #{params[:maxtime]}\n
-      \nGoogle API data: #{encoded_hash} \nWeather at source: #{} \nWeather at destination: #{}"
+      \nGoogle API data: #{encoded_hash} \nWeather at source: #{weather_source} \nWeather at destination: #{weather_dest}"
   end
 end
 
