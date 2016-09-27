@@ -6,8 +6,8 @@ require 'json'
 GOOGLE_MAPS_API_KEY = ENV['GOOGLE_MAPS_API_KEY']
 OPENWEATHER_API_KEY = ENV['OPENWEATHER_API_KEY']
 
-def get_google_data_for_travel(source, destination)
-  url = "https://maps.googleapis.com/maps/api/directions/json?key=#{GOOGLE_MAPS_API_KEY}&origin=#{source}&destination=#{destination}"
+def get_google_data_for_travel(origin, destination)
+  url = "https://maps.googleapis.com/maps/api/directions/json?key=#{GOOGLE_MAPS_API_KEY}&origin=#{origin}&destination=#{destination}"
   response = open(url)
   # response_status = response.status
   response_body = response.read
@@ -23,7 +23,7 @@ def get_weather_data_for_travel(lat, lon)
 end
 
 def get_request_metadata()
-  return "{ \"source\": #{params[:source]},\n
+  return "{ \"origin\": #{params[:origin]},\n
             \"destination\": #{params[:destination]},\n
             \"mintemp\": #{params[:mintemp]},\n
             \"maxtemp\": #{params[:maxtemp]},\n
@@ -31,8 +31,8 @@ def get_request_metadata()
 end
 
 class ShowRequest < Sinatra::Base
-  get '/?:source?/?:destination?/?:mintemp?/?:maxtemp?/?:maxtime?' do
-    google_api_data = get_google_data_for_travel(params[:source], params[:destination])
+  get '/?:origin?/?:destination?/?:mintemp?/?:maxtemp?/?:maxtime?' do
+    google_api_data = get_google_data_for_travel(params[:origin], params[:destination])
     weather_data = get_weather_data_for_travel(0,0)
     request_data = get_request_metadata()
     "{ \"request_data\": #{request_data},
