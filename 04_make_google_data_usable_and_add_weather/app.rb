@@ -23,11 +23,11 @@ def get_weather_data_for_travel(lat, lon)
 end
 
 def get_request_metadata()
-  return "{ source: #{params[:source]},\n
-            destination: #{params[:destination]},\n
-            mintemp: #{params[:mintemp]},\n
-            maxtemp: #{params[:maxtemp]},\n
-            maxtime: #{params[:maxtime]},\n }"
+  return "{ \"source\": #{params[:source]},\n
+            \"destination\": #{params[:destination]},\n
+            \"mintemp\": #{params[:mintemp]},\n
+            \"maxtemp\": #{params[:maxtemp]},\n
+            \"maxtime\": #{params[:maxtime]},\n }"
 end
 
 class ShowRequest < Sinatra::Base
@@ -35,9 +35,9 @@ class ShowRequest < Sinatra::Base
     google_api_data = get_google_data_for_travel(params[:source], params[:destination])
     weather_data = get_weather_data_for_travel(0,0)
     request_data = get_request_metadata()
-    "{ 'request_data': #{request_data},
-       'google_api_data': #{google_api_data},
-       'weather_data': #{weather_data} }"
+    "{ \"request_data\": #{request_data},
+       \"google_api_data\": #{google_api_data},
+       \"weather_data\": #{weather_data} }"
   end
 end
 
