@@ -15,7 +15,7 @@ def get_google_data_for_travel(source, destination)
 end
 
 def get_weather_data_for_travel(lat, lon)
-  url = "http://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&key=#{OPENWEATHER_API_KEY}"
+  url = "http://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&APPID=#{OPENWEATHER_API_KEY}"
   response = open(url)
   # response_status = response.status
   response_body = response.read
