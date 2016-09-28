@@ -11,7 +11,7 @@ def get_google_data_for_travel(origin, destination)
   response = open(url)
   # response_status = response.status
   response_body = response.read
-  return response_body
+  return JSON.parse(response_body)
 end
 
 def get_weather_data_for_travel(lat, lon)
@@ -19,15 +19,15 @@ def get_weather_data_for_travel(lat, lon)
   response = open(url)
   # response_status = response.status
   response_body = response.read
-  return response_body
+  return JSON.parse(response_body)
 end
 
 def get_request_metadata()
-  return "{ \"origin\": #{params[:origin]},\n
-            \"destination\": #{params[:destination]},\n
-            \"mintemp\": #{params[:mintemp]},\n
-            \"maxtemp\": #{params[:maxtemp]},\n
-            \"maxtime\": #{params[:maxtime]},\n }"
+  return { "origin": params[:origin],
+            "destination": params[:destination],
+            "mintemp": params[:mintemp],
+            "maxtemp": params[:maxtemp],
+            "maxtime": params[:maxtime] }
 end
 
 class ShowRequest < Sinatra::Base
@@ -35,9 +35,10 @@ class ShowRequest < Sinatra::Base
     google_api_data = get_google_data_for_travel(params[:origin], params[:destination])
     weather_data = get_weather_data_for_travel(0,0)
     request_data = get_request_metadata()
-    "{ \"request_data\": #{request_data},
-       \"google_api_data\": #{google_api_data},
-       \"weather_data\": #{weather_data} }"
+    { "request_data": request_data,
+       "google_api_data": google_api_data,
+       "weather_data": weather_data }.to_s
+
   end
 end
 
