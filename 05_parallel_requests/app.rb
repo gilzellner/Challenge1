@@ -5,9 +5,9 @@ require 'json'
 
 GOOGLE_MAPS_API_KEY = ENV['GOOGLE_MAPS_API_KEY']
 OPENWEATHER_API_KEY = ENV['OPENWEATHER_API_KEY']
-GOOGLE_API_LIMIT = ENV['GOOGLE_API_LIMIT']
-WEATHER_API_LIMIT = ENV['WEATHER_API_LIMIT']
-THIS_SERVICE_API_LIMIT = ENV['THIS_SERVICE_API_LIMIT']
+# GOOGLE_API_LIMIT = ENV['GOOGLE_API_LIMIT']
+# WEATHER_API_LIMIT = ENV['WEATHER_API_LIMIT']
+# THIS_SERVICE_API_LIMIT = ENV['THIS_SERVICE_API_LIMIT']
 
 def get_google_data_for_travel(origin, destination)
   url = "https://maps.googleapis.com/maps/api/directions/json?key=#{GOOGLE_MAPS_API_KEY}&origin=#{origin}&destination=#{destination}"
@@ -44,7 +44,7 @@ end
 
 class ShowRequest < Sinatra::Base
   get '/?:origin?/?:destination?/?:mintemp?/?:maxtemp?/?:maxtime?' do
-    get_request_metadata().to_s
+    get_request_metadata()[:google_api_data]["legs"].to_s
   end
 end
 
