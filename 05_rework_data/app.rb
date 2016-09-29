@@ -45,7 +45,7 @@ end
 def get_response(metadata)
   {'origin': metadata[:request_data][:origin],
    'destination': metadata[:request_data][:origin],
-   'totalDurationInMinutes':13,
+   'totalDurationInMinutes':metadata[:google_api_data][:routes],
    'totalDistanceInMeters':68000,
    'steps':[{'duration': '5 mins',
              'end_location': {'lat': 45.5067138,
@@ -56,7 +56,8 @@ def get_response(metadata)
         'end_location': {'lat': 45.5101458, 'lng': -73.5525249},
       'html_instructions': 'Turn right onto Rue Bonsecours',
       'weather': {'celsiusTemp': -45.3, 'description': 'Not fun'}}],
-      'travelAdvice': 'No'}
+      'travelAdvice': 'No',
+      'metadata':metadata}
 end
 
 class ShowRequest < Sinatra::Base
