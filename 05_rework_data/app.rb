@@ -42,9 +42,27 @@ def get_request_metadata()
          "weather_data": weather_data }
 end
 
+def get_response(metadata)
+  {'origin': metadata[:request_data][:origin],
+   'destination': metadata[:request_data][:origin],
+   'totalDurationInMinutes':13,
+   'totalDistanceInMeters':68000,
+   'steps':[{'duration': '5 mins',
+             'end_location': {'lat': 45.5067138,
+                              'lng': -73.55859149999999},
+      'html_instructions': 'Keep left to continue on Autoroute 720 E',
+      'weather': {'celsiusTemp': 25.3, 'description': 'scattered clouds'}},
+      {'duration': '8 mins',
+        'end_location': {'lat': 45.5101458, 'lng': -73.5525249},
+      'html_instructions': 'Turn right onto Rue Bonsecours',
+      'weather': {'celsiusTemp': -45.3, 'description': 'Not fun'}}],
+      'travelAdvice': 'No'}
+end
+
 class ShowRequest < Sinatra::Base
   get '/?:origin?/?:destination?/?:mintemp?/?:maxtemp?/?:maxtime?' do
-    get_request_metadata()[:google_api_data]["legs"].to_s
+    # JSON.pretty_generate(get_request_metadata()[:google_api_data])
+    JSON.pretty_generate(get_response(get_request_metadata()))
   end
 end
 
