@@ -45,13 +45,13 @@ def get_request_metadata()
 end
 
 def get_response(metadata)
-  byebug
+
   openstruct_metadata = RecursiveOpenStruct.new(metadata)
   {'origin': metadata[:request_data][:origin],
    'destination': metadata[:request_data][:origin],
    'totalDurationInMinutes':metadata[:google_api_data],
-   'totalDistanceInMeters':68000,
-   'steps':[{'duration': '5 mins',
+   'totalDistanceInMeters':openstruct_metadata.google_api_data["routes"][0]["legs"][0]["distance"]["value"],
+   'steps':[{'duration': openstruct_metadata.google_api_data["routes"][0]["legs"][0]["duration"]["value"],
              'end_location': {'lat': 45.5067138,
                               'lng': -73.55859149999999},
       'html_instructions': 'Keep left to continue on Autoroute 720 E',
@@ -62,6 +62,7 @@ def get_response(metadata)
       'weather': {'celsiusTemp': -45.3, 'description': 'Not fun'}}],
       'travelAdvice': 'No',
       'metadata':metadata}
+  byebug
 end
 
 class ShowRequest < Sinatra::Base
