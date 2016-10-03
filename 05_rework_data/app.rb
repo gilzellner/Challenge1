@@ -2,6 +2,8 @@
 require 'sinatra'
 require 'open-uri'
 require 'json'
+require 'byebug'
+require 'recursive-open-struct'
 
 GOOGLE_MAPS_API_KEY = ENV['GOOGLE_MAPS_API_KEY']
 OPENWEATHER_API_KEY = ENV['OPENWEATHER_API_KEY']
@@ -43,9 +45,11 @@ def get_request_metadata()
 end
 
 def get_response(metadata)
+  byebug
+  openstruct_metadata = RecursiveOpenStruct.new(metadata)
   {'origin': metadata[:request_data][:origin],
    'destination': metadata[:request_data][:origin],
-   'totalDurationInMinutes':metadata[:google_api_data][:routes],
+   'totalDurationInMinutes':metadata[:google_api_data],
    'totalDistanceInMeters':68000,
    'steps':[{'duration': '5 mins',
              'end_location': {'lat': 45.5067138,
