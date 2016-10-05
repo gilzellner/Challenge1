@@ -38,11 +38,22 @@ end
 
 def get_request_metadata()
   google_api_data = get_google_data_for_travel(params[:origin], params[:destination])
-  weather_data = get_weather_data_for_travel(0,0)
   request_data = get_request_data()
   return { "request_data": request_data,
-         "google_api_data": google_api_data,
-         "weather_data": weather_data }
+         "google_api_data": google_api_data}
+end
+
+def get_steps(metadata)
+  steps=get_nested_hash_value(metadata, 'steps')
+  result = []
+  steps.each { |step| result << { "distance": step["distance"]["text"],
+                                  "end_location": step["end_location"],
+                                  "html_instructions":step["html_instructions"],
+                                  "weather": {
+                                      get_weather_data_for_travel(step["end_location"]["lat"],
+                                                                  step["end_location"]["lng"])
+                                  }} }
+  return result
 end
 
 def get_all_weather_for_data(metadata)
@@ -93,9 +104,8 @@ end
 class ShowRequest < Sinatra::Base
   get '/?:origin?/?:destination?/?:mintemp?/?:maxtemp?/?:maxtime?' do
     metadata=get_request_metadata()
-    # output=get_nested_hash_value(metadata, 'steps')
-    # byebug
     JSON.pretty_generate(get_response(metadata))
+    byebug
   end
 end
 
