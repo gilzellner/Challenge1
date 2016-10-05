@@ -54,10 +54,14 @@ def get_steps(metadata)
                 "html_instructions":step["html_instructions"],
                 "weather":
                     {"description": weatherdata["weather"][0]["description"],
-                     "celsiusTemp": weatherdata["main"]["temp"]
+                     "celsiusTemp": get_celsius_from_kelvin(weatherdata["main"]["temp"])
                     }}
   end
   return result
+end
+
+def get_celsius_from_kelvin(celsius)
+  return celsius - 273.15
 end
 
 def get_all_weather_for_data(metadata)
@@ -71,7 +75,8 @@ end
 
 def is_all_weather_between_temps?(weatherdata, mintemp, maxtemp)
   weatherdata.each do |location|
-    if (location["main"]["temp_max"] > maxtemp.to_f || location["main"]["temp_min"] < mintemp.to_f)
+    if (get_celsius_from_kelvin(location["main"]["temp_max"]) > maxtemp.to_f ||
+        get_celsius_from_kelvin(location["main"]["temp_min"]) < mintemp.to_f)
       return false
     end
   end
