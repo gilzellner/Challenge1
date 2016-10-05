@@ -2,7 +2,7 @@
 require 'sinatra'
 require 'open-uri'
 require 'json'
-# require 'byebug'
+require 'byebug'
 require 'recursive-open-struct'
 
 GOOGLE_MAPS_API_KEY = ENV['GOOGLE_MAPS_API_KEY']
