@@ -8,6 +8,10 @@ Then run: rackup.
 sample test url:
 
  ✘  ~/dev/git/OutbrainChallenge   master  curl "http://localhost:9292?origin='Jerusalem'&destination='Jerusalem'&mintemp=20&maxtemp=30&maxtime=300"
+
+and the response:
+
+
 {
   "origin": "'Jerusalem'",
   "destination": "'Jerusalem'",
