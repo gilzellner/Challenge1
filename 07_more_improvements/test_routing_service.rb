@@ -1,25 +1,18 @@
 require './routing_service.rb'
 require 'test/unit'
+require './utils.rb'
 
 class WeatherTest < Test::Unit::TestCase
-
-  def test_get_celsius_from_kelvin
-    kelvin=320
-    assert_equal(kelvin - 273.15, get_celsius_from_kelvin(kelvin))
+  def test_get_google_data_for_travel1
+    assert_equal(1, get_nested_hash_value(get_google_data_for_travel('Jerusalem', 'Jerusalem'), 'steps').length)
   end
 
-  def test_get_weather_connectivity
-    assert_nothing_raised do
-      get_weather_data_for_travel(0,0)
-    end
+  def test_get_google_data_for_travel2
+    assert(get_nested_hash_value(get_google_data_for_travel('Jerusalem', 'Tel Aviv'), 'steps').length>1)
   end
 
-  def test_is_all_weather_between_temps?
-    weather_data = [get_weather_data_for_travel(35.22, 31.77)]
-    puts weather_data
-    mintemp=-50
-    maxtemp=50
-    assert_equal(is_all_weather_between_temps?(weather_data, mintemp, maxtemp), true)
+  def test_get_google_data_for_travel3
+    assert(get_nested_hash_value(get_google_data_for_travel('Jerusalem', 'Tel Aviv'), 'legs')[0]["duration"]["value"].to_f>100)
   end
 
 end
