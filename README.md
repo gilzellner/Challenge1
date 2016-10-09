@@ -52,10 +52,9 @@ OK
 .
 
 Finished in 0.806707 seconds.
--------------------------------------------------------------------------------------------------------------------------------------
+
 3 tests, 3 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
 100% passed
--------------------------------------------------------------------------------------------------------------------------------------
 3.72 tests/s, 3.72 assertions/s
  ~/dev/git/OutbrainChallenge   master ●  ruby test_routing_service.rb
 Loaded suite test_routing_service
@@ -63,8 +62,6 @@ Started
 ...
 
 Finished in 1.114711 seconds.
--------------------------------------------------------------------------------------------------------------------------------------
 3 tests, 3 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
 100% passed
--------------------------------------------------------------------------------------------------------------------------------------
 2.69 tests/s, 2.69 assertions/s
