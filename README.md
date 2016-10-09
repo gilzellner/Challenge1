@@ -40,6 +40,7 @@ and the response:
 To run tests:
 
  ~/dev/git/OutbrainChallenge   master ●  ruby test_weather_service.rb
+ 
 Loaded suite test_weather_service
 Started
 .Getting Weather for lat:0 lon:0
@@ -57,6 +58,7 @@ Finished in 0.806707 seconds.
 100% passed
 3.72 tests/s, 3.72 assertions/s
  ~/dev/git/OutbrainChallenge   master ●  ruby test_routing_service.rb
+
 Loaded suite test_routing_service
 Started
 ...
