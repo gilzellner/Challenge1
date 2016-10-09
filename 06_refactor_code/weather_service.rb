@@ -1,6 +1,8 @@
 require 'open-uri'
 require 'json'
 
+require './utils.rb'
+
 OPENWEATHER_API_KEY = ENV['OPENWEATHER_API_KEY']
 # WEATHER_API_LIMIT = ENV['WEATHER_API_LIMIT']
 
@@ -9,7 +11,8 @@ def get_weather_data_for_travel(lat, lon)
   puts('Getting Weather for lat:'+lat.to_s+' lon:'+ lon.to_s)
   url = "http://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&APPID=#{OPENWEATHER_API_KEY}"
   response = open(url)
-  # response_status = response.status
+  response_status = response.status
+  puts response_status
   response_body = response.read
   return JSON.parse(response_body)
 end

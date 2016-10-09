@@ -4,6 +4,7 @@ require 'json'
 # require 'byebug'
 require 'recursive-open-struct'
 
+require './utils.rb'
 require './routing_service.rb'
 require './weather_service.rb'
 
@@ -39,16 +40,6 @@ def get_steps(metadata)
                     }}
   end
   return result
-end
-
-def get_nested_hash_value(obj, key)
-  if obj.respond_to?(:key?) && obj.key?(key)
-    return obj[key]
-  elsif obj.respond_to?(:each)
-    r = nil
-    obj.find{ |*a| r=get_nested_hash_value(a.last, key) }
-    r
-  end
 end
 
 def get_response(metadata)
