@@ -31,8 +31,8 @@ def get_weather_data_for_travel(lat, lon)
   return JSON.parse(response_body)
 end
 
-def get_celsius_from_kelvin(celsius)
-  return celsius - 273.15
+def get_celsius_from_kelvin(kelvin)
+  return kelvin - 273.15
 end
 
 def get_all_weather_for_data(metadata)
@@ -41,7 +41,7 @@ def get_all_weather_for_data(metadata)
   steps.each { |step| locations << {'lat': step["end_location"]["lat"], 'lng': step["end_location"]["lng"]} }
   weather_data = []
   locations.each { |location| weather_data << get_weather_data_for_travel(location[:lat], location[:lng])}
-  weather_data
+  return weather_data
 end
 
 def is_all_weather_between_temps?(weatherdata, mintemp, maxtemp)
