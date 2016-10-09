@@ -6,11 +6,24 @@ require './utils.rb'
 OPENWEATHER_API_KEY = ENV['OPENWEATHER_API_KEY']
 # WEATHER_API_LIMIT = ENV['WEATHER_API_LIMIT']
 
+class WeatherError < StandardError
+  attr_reader :object
+
+  def initialize(object)
+    @object = object
+  end
+end
+
+
 
 def get_weather_data_for_travel(lat, lon)
   puts('Getting Weather for lat:'+lat.to_s+' lon:'+ lon.to_s)
   url = "http://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&APPID=#{OPENWEATHER_API_KEY}"
-  response = open(url)
+  begin
+    response = open(url)
+  rescue
+    raise WeatherError.new(response), "Error Getting WeatherError info"
+  end
   response_status = response.status
   puts response_status
   response_body = response.read
