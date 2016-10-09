@@ -57,7 +57,6 @@ class ShowRequest < Sinatra::Base
   get '/?:origin?/?:destination?/?:mintemp?/?:maxtemp?/?:maxtime?' do
     metadata=get_request_metadata()
     JSON.pretty_generate(get_response(metadata))
-    # byebug
   end
 end
 

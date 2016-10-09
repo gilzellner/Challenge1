@@ -1,3 +1,5 @@
+# weather_service.rb
+
 require 'open-uri'
 require 'json'
 
@@ -13,7 +15,6 @@ class WeatherError < StandardError
     @object = object
   end
 end
-
 
 
 def get_weather_data_for_travel(lat, lon)
